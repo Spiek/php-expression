@@ -111,6 +111,11 @@ class Expression
         'while', 
         'xor',
     );
+	
+	/**
+     * Creates a new expression.
+     */
+	public function __construct() {}
 
     /**
      * Creates a new expression.
@@ -162,8 +167,11 @@ class Expression
      * @return mixed the result.
      * @throws Runtime if t
      */
-    public function evaluate()
+    public function evaluate($code = null)
     {
+		// set code if new code was given
+		if($code !== null) this->_code = $code;
+		
         $this->isSafe();
         $this->checkSyntax();
         return eval($this->_code);
